@@ -38,7 +38,6 @@ export default {
     this.selectedCoach = this.$store.getters['coaches/coaches'].find(
       c => c.id === this.id
     );
-    console.log(this.selectedCoach);
   },
   computed: {
     fullName() {
@@ -48,7 +47,7 @@ export default {
       return this.selectedCoach.hourlyRate;
     },
     contactLink() {
-      return this.$route.path + '/' + this.id + '/contact';
+      return '/coaches/' + this.id + '/contact';
     },
     areas() {
       return this.selectedCoach.areas;
