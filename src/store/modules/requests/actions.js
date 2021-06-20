@@ -17,7 +17,6 @@ export default {
     newRequest.coachId = payload.coachId;
 
     if (!response.ok) {
-      console.log(response);
       const error = new Error(responseData.message || 'Failed to send');
       throw error;
     }
@@ -25,8 +24,9 @@ export default {
   },
   async loadRequests(context) {
     const coachId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://vue-http-demo-a47b1-default-rtdb.firebaseio.com/requests/${coachId}.json`
+      `https://vue-http-demo-a47b1-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${token}`
     );
     const responseData = await response.json();
     if (!response.ok) {
